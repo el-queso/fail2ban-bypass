@@ -1,8 +1,8 @@
 # Fail2ban bypass using tor
 
-## **Fail2Ban** reads log file that contains password failure report and bans the corresponding IP addresses using firewall rules. It updates firewall rules to reject the IP address. That means that if we send every request with a different IP Address that results in bypassing this firewall.
+### **Fail2Ban** reads log file that contains password failure report and bans the corresponding IP addresses using firewall rules. It updates firewall rules to reject the IP address. That means that if we send every request with a different IP Address that results in bypassing this firewall.
 
-### For the HTTP Bruteforcer we are using random tor proxies per request using requests-session and that results in bypassing fail2ban. This script uses multiprocessing so we can have faster results.
+#### For the HTTP Bruteforcer we are using random tor proxies per request using requests-session and that results in bypassing fail2ban. This script uses multiprocessing so we can have faster results.
 
 ```python
 import random
@@ -45,7 +45,7 @@ with Pool(processes=16) as pool:
     pool.join()
 ```
 
-### For the FTP Bruteforcer we are using random tor proxies per request using proxychains and that results in bypassing fail2ban. This script uses multiprocessing so we can have faster results.
+#### For the FTP Bruteforcer we are using random tor proxies per request using proxychains and that results in bypassing fail2ban. This script uses multiprocessing so we can have faster results.
 
 ```python
 import ftplib
@@ -105,7 +105,7 @@ for t in range(n_threads):
 q.join()
 ```
 
-### For the SSH Bruteforcer we are using random tor proxies per request using proxychains and that results in bypassing fail2ban. `StrictHostKeyChecking=no` is used to make our attempts without strict host key checking.
+#### For the SSH Bruteforcer we are using random tor proxies per request using proxychains and that results in bypassing fail2ban. `StrictHostKeyChecking=no` is used to make our attempts without strict host key checking.
 
 ```python
 import os
